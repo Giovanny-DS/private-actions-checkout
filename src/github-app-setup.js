@@ -51,8 +51,11 @@ async function obtainAppToken (id, privateKeyInput) {
       return;
     }
 
+    console.log('jwt: ', jwt)
+
     // Obtain installation id
     const octokit = getOctokit(jwt);
+    console.log('octokit: ', octokit)
     const installations = await octokit.apps.listInstallations();
     if(installations.data.length !== 1) {
       error(`App > Only 1 installation is allowed for this app. We detected it has ${installations.data.length} installations`);
